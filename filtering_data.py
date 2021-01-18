@@ -5,12 +5,12 @@ import json
 
 #Then load it into Python as a file
 with open ('A_dutch_people_filtered.json') as file:
-    real_people = json.load(file)
+    real_people= (json.load(file))
 
-with open('people_a.csv', 'w') as file:
-    file.write('Citizenship, birthYear, deathYear\n')
+# with open('people_a.csv', 'w') as f:
+#     f.write('Citizenship, birthYear, deathYear\n')
 
-for person in real_people:
-    if birthYear<deathYear:
-        lifetime = deathYear - birthYear
-    file.write(f"{Citizenship['citizenship']},{birthYear['birthYear']},{deathYear['deathYear']}, {lifespan['lifetime']} \n")
+# for person in real_people:
+#     if birthYear<deathYear:
+#         lifetime = deathYear - birthYear
+#     f.write(f"{Citizenship['citizenship']},{birthYear['birthYear']},{deathYear['deathYear']}, {lifespan['lifetime']} \n")
