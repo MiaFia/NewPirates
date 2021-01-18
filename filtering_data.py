@@ -14,3 +14,4 @@ with open('people_a.csv', 'w') as f:
         death = int(person['ontology/deathYear'])
         #possibly some metric for location
         f.write(f'{birth}, {death} \n')
+# How do we get all people with all letters in here?
