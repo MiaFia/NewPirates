@@ -10,7 +10,7 @@ with open ('A_dutch_people_filtered.json', encoding= 'utf-8') as file:
 with open('people_a.csv', 'w') as f:
     f.write('birthYear, deathYear\n')
     for person in real_people:
-        birth= person['ontology/birthYear']
-        death = person['ontology/deathYear']
+        birth= int(person['ontology/birthYear'])
+        death = int(person['ontology/deathYear'])
         #possibly some metric for location
         f.write(f'{birth}, {death} \n')
