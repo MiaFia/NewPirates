@@ -7,10 +7,20 @@ import json
 with open ('A_dutch_people_filtered.json') as file:
     real_people= json.load(file)
 
+
 with open('people_a.csv', 'w') as f:
     f.write('Citizenship, birthYear, deathYear\n')
 
+# for person in real_people:
+#     #if ontology/birthYear<onotology/deathYear:
+#         #lifetime = deathYear - birthYear
+#     f.write(f"{Citizenship['citizenship']},{birthYear['ontology/birthYear']},{deathYear['onotology/deathYear']}\n")
+
+#I'm trying stuff with a list
+
+list_of_dutch_a = []
+
 for person in real_people:
-    #if ontology/birthYear<onotology/deathYear:
-        #lifetime = deathYear - birthYear
-    f.write(f"{Citizenship['citizenship']},{birthYear['ontology/birthYear']},{deathYear['onotology/deathYear']}\n")
+    birth= person['ontology/birthYear']
+    death = person['onotlogy/deathYear']
+    list_of_dutch_a.append(birth,death)
