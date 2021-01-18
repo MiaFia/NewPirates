@@ -8,8 +8,8 @@ with open ('A_dutch_people_filtered.json', encoding= 'utf-8') as file:
     real_people= json.loads(file.read().replace('\n',''))
 
 
-with open('people_a.csv', 'w') as f:
-    f.write('Citizenship, birthYear, deathYear\n')
+# with open('people_a.csv', 'w') as f:
+#     f.write('Citizenship, birthYear, deathYear\n')
 
 # for person in real_people:
 #     #if ontology/birthYear<onotology/deathYear:
@@ -19,11 +19,17 @@ with open('people_a.csv', 'w') as f:
 #I'm trying stuff with a list
 
 list_of_dutch_a = []
+with open('people_a.csv', 'w') as f:
+    f.write('birthYear, deathYear\n')
+    for person in real_people:
+        birth= person['ontology/birthYear']
+        death = person['ontology/deathYear']
+        #and add those to a list!
+        #list_of_dutch_a.append({'birth': birth, 'death': death})
+        f.write(f'{birth}, {death} \n')
 
-for person in real_people:
-    birth= person['ontology/birthYear']
-    death = person['ontology/deathYear']
-    #and add those to a list!
-    list_of_dutch_a.append({'birth': birth, 'death': death})
+# print(list_of_dutch_a)
 
-print(list_of_dutch_a)
+# with open('people_a.csv', 'w') as f:
+#     f.write('birthYear, deathYear\n')
+#     f.write(f'{birth}, {death} \n')
