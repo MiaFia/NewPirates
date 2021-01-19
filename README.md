@@ -1,11 +1,11 @@
 # NewPirates
 
 This is the code to filter out Dutchies:
- gc .\A_people.json |sls "deathYear"| sls "birthYear"| sls "Dutch" |select -expand Line >.\A_people_filteredh.json
+ gci .\People\People\ | gc | sls "dutch" |sls "birthYear" |sls "NaturalPerson" |sls "deathYear"|select -expand Line >.\people_filteredNL.json
  
  And this for South Africans:
  
-  gc .\A_people.json |sls "deathYear"| sls "birthYear"| sls "South African"|select -expand Line >.\A_people_filteredSA.json
+  gci .\People\People\ | gc | sls "South African" |sls "birthYear" |sls "NaturalPerson" |sls "deathYear"|select -expand Line >.\people_filteredSA.json
 
 How to get a .csv file:
 
