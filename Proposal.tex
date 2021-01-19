@@ -20,8 +20,7 @@ Many factors influence a person's life expectancy. Diet, genetics, and country o
 So as life expectancy is an average, it is not perfect to predict people's life span. And as so many other factors play into it, different social groups might deviate from the average. Thus, we are looking into the question if celebrities have a significantly longer life span than the life expectancy would suggest. We consider celebrities from two countries, the Netherlands and South Africa, and see if there is difference in our findings. So finally we want to find, if looking at the life spans of celebrities from a country is a good approximation for life expectancy.
 
 \section{Methods}
-We used the dataset DPwikipedia to look through the lifespans of celebrities that have a Wikipedia article. From there we filtered for real people. We do this by excluding entries that contain the string 'fictional' or 'mythological'. Afterwards, we narrowed the entries to only those that had a birth and death Year. Then we filtered for those that had the key words 'Dutch' or 'South African' in their descriptions. We chose those two countries, as the data included many entries on people from these places, so we would have enough data and the we thought that the shared history might make other factors comparable. Further the life expectancy in both places was still fairly different to each other. After filtering the data for each country, we found the average lifespan. As our life expectancy data only reaches back until 1861 we also only included data points with a birth year after that of the first data point. We then averaged all the lifespans and the life expectancies from all years since then. We assumed men and women to be 50\% of the population. To compare Wikipedia life expectancies to that of the average Dutch person we looked up a data set by the Dutch government that can be found at: \cite{Levensverwachting} . 
- 
+We used the dataset DPwikipedia to look through the lifespans of celebrities that have a Wikipedia article. From there we filtered for real people. We do this by excluding entries that contain the string 'fictional' or 'mythological'. Afterwards, we narrowed the entries to only those that had a birth and death Year. Then we filtered for those that had the key words 'Dutch' or 'South African' in their descriptions. We chose those two countries, as the data included many entries on people from these places, so we would have enough data and the we thought that the shared history might make other factors comparable. Further the life expectancy in both places was still fairly different to each other. After filtering the data for each country, we found the average lifespan. As our life expectancy data only reaches back until 1861 we also only included data points with a birth year after that of the first data point. We then averaged all the lifespans and the life expectancies from all years since then. We assumed men and women to be 50\% of the population. To compare Wikipedia life expectancies to that of the average Dutch person we looked up a data set by the Dutch government that can be found at: \cite{Levensverwachting}. 
 
 \section{Proposal for rest of the week}
 We now have the filtered data and added it for the Netherlands into R. We also found a good dataset about life expectancies in the Netherlands and have included it into R, to find mean and median. For the rest of the week we want to repeat the things we did for South African celebrities. We still need to find data the life expectancies there and run the code to filter for it. Then we need to compare the different averages to each other, maybe graph it and determine if there are significant differences. 
@@ -34,16 +33,20 @@ We are also planning on graphing the average lifespan per birth year of our cele
 - we also include people from the past decades, but if they are already dead, they might not have reached the life expectancy, so maybe we will delete them\\
 - we filtered by the word 'dutch' so it might include people that did not live there all their life etc. But across most it should be okay\\
 - for the mean and median life expectancy, we assumed that the population is 50\% men and 50\% women, which is not fully true and also not represented in the data of people we have. But as not everyone has a Gender label, it might narrow our dataset down too much\\
-\begin{thebibliography}	{}
-\bibitem{Levensverwachting} Centraal Bureau voor de Statistiek, \textit{Levensverwachting; geslacht, leeftijd (per jaar en periode van vijf jaren)}, 17-01-2021, url:
-\href{https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-}{https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-}, accessed {today}
 
-<<<<<<< HEAD
-\end{thebibliography}
-=======
 \section{Preliminary Results}
-With the very rough process that we have set up so far, we got means and medians for both the life expectancy data and the life span data. There are still many critique points here, but it seems, that celebrities with a Wikipedia page have a longer life span than expected. This is at least across the birth years 1861-2020. We also already made a graph with the lifespans of all dutch people, which seems to be getting longer over the centuries as well. 
 
->>>>>>> b8d2f253d83e5b668afe0ba9a3b8330a7d96fed5
+With the very rough process that we have set up so far, we got means and medians for both the life expectancy data and the life span data. There are still many critique points here, but it seems, that celebrities with a Wikipedia page have a longer life span than expected for their year of birth. This is at least across the birth years 1861-2020. We also already made a graph with the lifespans of all Dutch people, which seems to be getting longer over the centuries as well.
+
+\begin{thebibliography}	{}
+
+
+\bibitem{Levensverwachting} Centraal Bureau voor de Statistiek, \textit{Levensverwachting; geslacht, leeftijd (per jaar en periode van vijf jaren)}, 17-01-2021, url:
+\href{https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-}{https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-}, accessed {\today}. 
+
+\bibitem{}
+
+
+\end{thebibliography}
 
 \end{document}
