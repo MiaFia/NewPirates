@@ -23,14 +23,16 @@ We used the dataset DPwikipedia to look through the lifespans of celebrities tha
  
 
 \section{Proposal for rest of the week}
-We now have the filtered data and added it for the Netherlands into R. We also found a good dataset about life expectancies in the Netherlands and are working on incorporating that into R and filtering it for the relevant points. For the rest of the week we want to find the averages for Dutch people and then continue to do the same with those from South Africa. We still need to find data the life expectancies there and run the code to filter for it. Then we need to compare the different averages to each other, maybe graph it and determine if there are significant differences. 
+We now have the filtered data and added it for the Netherlands into R. We also found a good dataset about life expectancies in the Netherlands and have included it into R, to find mean and median. For the rest of the week we want to repeat the things we did for South African celebrities. We still need to find data the life expectancies there and run the code to filter for it. Then we need to compare the different averages to each other, maybe graph it and determine if there are significant differences. 
 As we did not filter for real people yet, we still have to filter for that. We assumed not every real person has the label 'NaturalPerson', so we rather took out people labeled 'fictional'. For that we would like a working loop in Powershell, so we do not have to manually look through all letters and filter them. 
-Maybe we can find average data for people before our data and then use that average, so we can also still consider data from further back from our set. 
-We are also planning on graphing the average lifespan per birth year of our celebrities and then somehow compare it with the life expectancy for that year. This will only use R and should be doable with the data we have found so far. When 
+We will also try to find data for some life expectancies before our data, from research papers etc. With this data we then can do an approximation of the analysis we did with more exact data for a longer time span.
+We are also planning on graphing the average lifespan per birth year of our celebrities and then somehow compare it with the life expectancy for that year. This will only use R and should be doable with the data we have found so far. As our life expectancy data is also grouped for 5 year intervals, we are thinking of doing that as well, so comparing the life expectancy for each five year interval to the average life span of people born in that interval. We have a lot of people, so that should hopefully be possible. We might then also take out more recent decades, as those would show weird results in the comparison. 
 
 \section{Limitations}
-- we don't really care when someone is born and the corresponding life expectancy, so it is a very rough average\\
-- we also include people from the past decades, but if they are already dead, they might not have reached the life expectancy\\
-- we filtered by the word 'dutch' so it might include people that did not live there all their life etc. but across most it should be okay\\
+- we don't really care when someone is born and the corresponding life expectancy, so it is a very rough average, we might come back to this later\\
+- we also include people from the past decades, but if they are already dead, they might not have reached the life expectancy, so maybe we will delete them\\
+- we filtered by the word 'dutch' so it might include people that did not live there all their life etc. But across most it should be okay\\
+- for the mean and median life expectancy, we assumed that the population is 50\% men and 50\% women, which is not fully true and also not represented in the data of people we have. But as not everyone has a Gender label, it might narrow our dataset down too much\\
+
 
 \end{document}

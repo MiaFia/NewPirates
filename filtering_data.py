@@ -1,13 +1,26 @@
 #Settings CODE
 import json
 
-#First filter the file in the shell using commands gc .\People\People\A_people.json | sls "citizenship" |sls "birthYear" |sls "deathYear" %{$_.Line}>.\A_people_filtered.json
-#Then manually add the square brackets and save it in utf-8
-with open ('A_dutch_people_filtered.json', encoding= 'utf-8') as file:
-    real_people= json.loads(file.read().replace('\n',''))
+#Create a list of alphabet letters
+alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
-# Now we can add our variables into a csv file:
-with open('people_a.csv', 'w') as f:
+# Creating an empty list that we could put the entries in
+real_people = []
+#Creating a for loop to load each json file:
+for letter in alphabet:
+    with open(f'{letter}_people_filteredh.json', encoding='utf-8') as file:
+        #Run through each dictionary line by line
+        for line in file:
+            #Remove white spaces in the ends
+            line = line.strip()
+            #If the end of the list is comma, have the line end there
+            if line[-1] == ',':
+                line = line[:-1]
+            line_dict = json.loads(line)
+            #Append all the lines into the empty list
+            real_people.append(line_dict)
+#Create a csv file
+with open('people_dutch_real.csv', 'w') as f:
     f.write('birthYear, deathYear\n')
     for person in real_people:
         birth= person['ontology/birthYear']
