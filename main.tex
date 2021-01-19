@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\title{Python PiRates Project Proposal}
+\author{Abhemanyu Kumar, Artom Obenko, Johanna Annau, Khoa Tran, Sophia Klaußner}
+\date{January 2021}
+
+\begin{document}
+	
+\maketitle
+	
+\section{Research Question(s)}
+- Do (Dutch) celebrities live longer than the average life expectancy? On average over time and within their birth year\\
+- Does the life expectancy differ between different countries?\\
+- Are celebrity lifespans a good approximation for life expectancy?\\
+	
+\section{Introduction}
+Many factors influence a person's life expectancy. Diet, genetics, and country of birth are factors. Most databases however average those together and create a life expectancy for country or region, depending on the birth year.
+So as life expectancy is an average, it is not perfect to predict people's life span. And as so many other factors play into it, different social groups might deviate from the average. Thus, we are looking into the question if celebrities have a significantly longer life span than the life expectancy would suggest. We consider celebrities from two countries, the Netherlands and South Africa, and see if there is difference in our findings. So finally we want to find, if looking at the life spans of celebrities from a country is a good approximation for life expectancy.
+
+\section{Methods}
+We used the dataset DPwikipedia to look through the lifespans of celebrities that have a Wikipedia article. From there we filtered for real people. We do this by excluding entries that contain the string 'fictional' or 'mythological'. Afterwards, we narrowed the entries to only those that had a birth and death Year. Then we filtered for those that had the key words 'Dutch' or 'South African' in their descriptions. We chose those two countries, as the data included many entries on people from these places, so we would have enough data and the we thought that the shared history might make other factors comparable. Further the life expectancy in both places was still fairly different to each other. After filtering the data for each country, we found the average lifespan. As our life expectancy data only reaches back until 1861 we also only included data points with a birth year after that of the first data point. We then averaged all the lifespans and the life expectancies from all years since then. We assumed men and women to be 50\% of the population. To compare Wikipedia life expectancies to that of the average Dutch person we looked up a data set by the Dutch government that can be found at: \cite{Levensverwachting}. 
+
+ \section{Work Report Monday, Tuesday}
+We started with the thought to calculate life expectancy from the lifespans of the people within the wikipedia database. Then we realised, calculating life expectancy is super complicated and takes many steps and data that we do not have. 
+So we decided that we will be comparing the average life span of celebrities to the life expectancy in that country, and also kind of ignore the years in which they are born. 
+To do that we first filtered the data for 'Natural\_Persons' and then found those that have a birthYear and a deathYear. To try things we then filtered for people that are dutch in some way and tried to do stuff with that.
+This filtered json file we then loaded in Python and assigned it a variable. Then we used that to filter out only the columns that we were interested in and dumped that into a csv file.
+We then want to open that csv file in R, to calculate the lifespan and then graph it on the nationality there. 
+We realised that there is no clear label for nationality and too little people have a citizenship tag, which was our second idea. Therefore we decided to search for a specific country in the entry and only compare the data for two different countries. We started with dutch as that name seemed pretty clear (not run into 'american' vs 'us-american' etc. problems)
+We started having a look at life expectancy, but most places only have data from 1960. So we might compare the Netherlands with one country from the global south. 
+After getting a csv file with the birth and death dates, we uploaded it into R and mutated it so a new column including the lifespan appeared. This was now data of lifespans of people having something dutch in their name and whose entry started with an A!
+The problem is, we only have life expectancy data starting 1900, but we might not have enough people for that in all countries we look at. For Dutch with A our number went from 400 to 100 people, which is okay, but could be hard with smaller ones and those with less celebrities.
+We continued with that code and managed to loop it over all letters, so we compiled a csv with all the lifespans of all wikipedia entries. This we fed into a R code, which gave us the mean and median lifespan. 
+We also added the dutch life expectancy data into a R code, to get similar results there.
+
+\section{Proposal for rest of the week}
+For the rest of the week we want to repeat the things we did for South African celebrities. We still need to find data the life expectancies there and run the code to filter for it. Then we need to compare the different averages to each other, maybe graph it and determine if there are significant differences. 
+We will also try to find data for some life expectancy's before our data, from research papers etc. With this data we then can do an approximation of the analysis we did with more exact data for a longer time span.
+We are also planning on graphing the average lifespan per birth year of our celebrities and then somehow compare it with the life expectancy for that year. This will only use R and should be doable with the data we have found so far. As our life expectancy data is also grouped for 5 year intervals, we are thinking of doing that as well, so comparing the life expectancy for each five year interval to the average life span of people born in that interval. We have a lot of people, so that should hopefully be possible. We might then also take out more recent decades, as those would show weird results in the comparison. 
+
+\section{Limitations}
+- we don't really care when someone is born and the corresponding life expectancy, so it is a very rough average, we might come back to this later\\
+- we also include people from the past decades, but if they are already dead, they might not have reached the life expectancy, so maybe we will delete them\\
+- we filtered by the word 'dutch' so it might include people that did not live there all their life etc. But across most it should be okay\\
+- for the mean and median life expectancy, we assumed that the population is 50\% men and 50\% women, which is not fully true and also not represented in the data of people we have. But as not everyone has a Gender label, it might narrow our dataset down too much\\
+
+\section{Preliminary Results}
+With the very rough process that we have set up so far, we got means and medians for both the life expectancy data and the life span data. There are still many critique points here, but it seems, that celebrities with a Wikipedia page have a longer life span than expected. This is at least across the birth years 1861-2020. 
+We also already made a graph with the lifespans of all dutch people, which get significantly longer over time \ref{fig:cohorts}. Although this graph was only made with complete cohorts, so only birth dates before 1920. We are now planning on using this result as well, to answer the question if life span of celebrities is a good indicator for life expectancy. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{DUTCH_LIFE_GRAPH.png}
+	\caption{The average lifespan of Dutch people with a Wikipedia entry until 1920 (complete cohorts}
+	\label{fig:cohorts}
+\end{figure}
+
+\section{Proposal for rest of the week}
+We now have the filtered data and added it for the Netherlands into R. We also found a good dataset about life expectancies in the Netherlands and have included it into R, to find mean and median. For the rest of the week we want to repeat the things we did for South African celebrities. We still need to find data the life expectancies there and run the code to filter for it. Then we need to compare the different averages to each other, maybe graph it and determine if there are significant differences. 
+As we did not filter for real people yet, we still have to filter for that. We assumed not every real person has the label 'NaturalPerson', so we rather took out people labeled 'fictional'. For that we would like a working loop in Powershell, so we do not have to manually look through all letters and filter them. 
+We will also try to find data for some life expectancies before our data, from research papers etc. With this data we then can do an approximation of the analysis we did with more exact data for a longer time span.
+We are also planning on graphing the average lifespan per birth year of our celebrities and then somehow compare it with the life expectancy for that year. This will only use R and should be doable with the data we have found so far. As our life expectancy data is also grouped for 5 year intervals, we are thinking of doing that as well, so comparing the life expectancy for each five year interval to the average life span of people born in that interval. We have a lot of people, so that should hopefully be possible. We might then also take out more recent decades, as those would show weird results in the comparison. 
+
+If you are interested, you can find our git repositiory here: 
+\href{https://github.com/MiaFia/NewPirates.git}{https://github.com/MiaFia/NewPirates.git}
+
+
+
+\begin{thebibliography}	{}
+
+
+\bibitem{Levensverwachting} Centraal Bureau voor de Statistiek, \textit{Levensverwachting; geslacht, leeftijd (per jaar en periode van vijf jaren)}, 17-01-2021, url:
+\href{https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-}{https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-}, accessed {\today}. 
+
+\bibitem{WorldBank} The World Bank, \textit{Life expectancy at birth, total (years)-Netherlands}, \href{https://data.worldbank.org/indicator/SP.DYN.LE00.IN?locations=NL}{https://data.worldbank.org/indicator/SP.DYN.LE00.IN?locations=NL}, accessed {\today}.
+
+\bibitem{Nothing}
+cbs.nl, \textit{Life expectancy increased in 2019}, 25-09-2020, \href{https://www.cbs.nl/en-gb/news/2020/39/life-expectancy-increased-in-2019}{https://www.cbs.nl/en-gb/news/2020/39/life-expectancy-increased-in-2019}, accessed {\today}
+
+\bibitem{bla}
+cbs.nl, \textit{Lower gains in life expectancy here and in the EU}, 10-09-2020, \href{https://www.cbs.nl/en-gb/news/2018/36/lower-gains-in-life-expectancy-here-and-in-the-eu}{https://www.cbs.nl/en-gb/news/2018/36/lower-gains-in-life-expectancy-here-and-in-the-eu}, accessed {\today}.
+
+
+
+
+\end{thebibliography}
+
+\end{document}
