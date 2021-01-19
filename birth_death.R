@@ -1,10 +1,14 @@
-library (tidyverse)
-life_df <- read_csv('people_a.csv')
-span_df <- mutate (life_df, 'lifespan' = deathYear- birthYear)
-#this is the lifespan of dutch people with A now!
+#This might merge all the files?
+install.packages("dplyr")                                    
+install.packages("plyr")   
+install.packages("readr")                
 
-library(dplyr)
-library(readr)
-life_df <- list.files(path="", full.names = TRUE) %>% 
+library("dplyr")                                                 
+library("plyr") 
+library("readr") 
+library (tidyverse)
+life_all <- list.files(path=".\People\Filtered",pattern = "*.csv", full.names = TRUE) %>% 
   lapply(read_csv) %>% 
   bind_rows 
+
+span_df <- mutate (life_all, 'lifespan' = deathYear- birthYear)
