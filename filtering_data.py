@@ -17,7 +17,6 @@ directory = r'C:\Users\User\Documents\MET2J\python_kitchen\Final_project.py\NewP
 for filename in os.listdir(directory):
     if filename.endswith(".json"):
 # Now we can add our variables into a csv file:
-<<<<<<< HEAD
         #for letters in file_list:
         with open('people_a.csv', 'w') as f:
             f.write('birthYear, deathYear\n')
@@ -28,7 +27,6 @@ for filename in os.listdir(directory):
                 f.write(f'{birth}, {death} \n')
     else:
         continue
-=======
 with open('people_a.csv', 'w') as f:
     f.write('birthYear, deathYear\n')
     for person in real_people:
@@ -37,4 +35,3 @@ with open('people_a.csv', 'w') as f:
         #possibly some metric for location
         f.write(f'{birth}, {death} \n')
 # How do we get all people with all letters in here?
->>>>>>> 8aaf47fe8b573de75aa2f41b7cedcb301eef7758
