@@ -16,3 +16,8 @@ How to get a .csv file:
         death = person['ontology/deathYear']
         #possibly some metric for location
         f.write(f'{birth}, {death} \n')
+
+
+How to get to the Dataset we chose:
+https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-
+Then click on one of the links and there we downloaded it as csv immediately instead of doing the API thing.
