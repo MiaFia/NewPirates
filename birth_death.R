@@ -11,4 +11,5 @@ life_all <- list.files(path=".\People\Filtered",pattern = "*.csv", full.names = 
   lapply(read_csv) %>% 
   bind_rows 
 
-span_df <- mutate (life_all, 'lifespan' = deathYear- birthYear)
+span_df <- mutate (life_all, lifespan = deathYear- birthYear)
+avr_df <- summarise (span_df, 'avr_span'= mean(lifespan))
