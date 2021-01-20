@@ -1,7 +1,8 @@
 library(tidyverse)
 library(readr)
+library('ggthemes')
 Sys.setenv(LANG= "en")
-Levensverwachting <- read_delim("LevensverwachtingStatline.csv", 
+Levensverwachting <- read_delim("Levensverwachting_vanaf_1861_20012021_113307.csv", 
                                         ";", escape_double = FALSE, trim_ws = TRUE)
 
 Levens2<- Levensverwachting %>%
@@ -25,8 +26,14 @@ Levens4 <- Levens3 %>%
             mean_women= mean(as.integer(Vrouwen)),
             mean_all= mean(as.integer(Lifeexpectance_combined)))
 
-
-  
-
-
-
+#Then we can also graph this to make the trends visible
+ggplot(data=Levens3)+
+  aes(x=Perioden, y=Lifeexpectance_combined)+
+  geom_point()+
+  labs(title = 'Life expectancy Netherlands',
+       subtitle = 'Life expectancy since Birth Year 1861, per 5 year cohort',
+       caption = "Source: Centraal Bureau voor de Statistiek",
+       x = 'Birth Year cohorts',
+       y = 'Life expectancy in years')+
+  theme_light()+
+  scale_x_discrete(breaks = c("1861 tot 1866" ,"1891 tot 1896", "1921 tot 1926", "1951 tot 1956", "1981 tot 1986"))
