@@ -16,4 +16,8 @@ https://www.gapminder.org/data/
 select the filter 'life expectancy'
 This filter could also be added manually but since the original csv is really big we decided to use this pre-applied filter and downloaded it as a csv.
 
+https://doi.org/10.2307/3348839, page 33
+copy the table into a csv file
+Read into R.
+
 These two files should be opened in the working directory along with the R code, so it runs. 
