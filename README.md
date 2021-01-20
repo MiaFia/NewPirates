@@ -1,25 +1,19 @@
 # NewPirates
+This repository creates graphs comparing the average lifespan of people with a wikipedia article and the life expectancy for their country or origin. This can be done for the Netherlands and South Africa.
 
-This is the code to filter out Dutchies:
- gci .\People\People\ | gc | sls "dutch" |sls "birthYear" |sls "NaturalPerson" |sls "deathYear"|select -expand Line >.\people_filteredNL.json
- 
- And this for South Africans:
- 
-  gci .\People\People\ | gc | sls "South African" |sls "birthYear" |sls "NaturalPerson" |sls "deathYear"|select -expand Line >.\people_filteredSA.json
+First the python file filtering_data.py should be opened. There two things are possible: 
+either: manually go through each file in the People folder using the first shell command and the running the top python lines
+or: scroll down and run the other shell command through the entire folder in the shell and use the second set of python commands
 
-How to get a .csv file:
+Then the resulting .csv files for the countries are used in the R script Graphing_both_countries. 
+For that two datasets have to be downloaded:
 
-   with open('people_a.csv', 'w') as f:
-    f.write('birthYear, deathYear\n')
-    for person in real_people:
-        birth= person['ontology/birthYear']
-        death = person['ontology/deathYear']
-        #possibly some metric for location
-        f.write(f'{birth}, {death} \n')
-
-
-How to get to the Dataset we chose:
+How to get to the Datasets we chose:
 https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-
-Then click on one of the links and there we downloaded it as csv immediately instead of doing the API thing.
-Data set for the Middle Ages:
-https://www.tandfonline.com/doi/full/10.1080/00324728.2013.765955?scroll=top&needAccess=true&
+Then click on WEbservice, choose the first link and immediatly download the csv.
+
+https://www.gapminder.org/data/
+select the filter 'life expectancy'
+This filter could also be added manually but since the original csv is really big we decided to use this pre-applied filter and downloaded it as a csv.
+
+These two files should be opened in the working directory along with the R code, so it runs. 
