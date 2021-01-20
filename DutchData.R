@@ -1,8 +1,11 @@
+#For this we took data from the Dutch Statistical 
+
 library(tidyverse)
 library(readr)
 library('ggthemes')
+library(stringr)
 Sys.setenv(LANG= "en")
-Levensverwachting <- read_delim("Levensverwachting_vanaf_1861_20012021_113307.csv", 
+Levensverwachting <- read_delim("LevensverwachtingStatline.csv", 
                                         ";", escape_double = FALSE, trim_ws = TRUE)
 
 Levens2<- Levensverwachting %>%
@@ -17,6 +20,10 @@ Levens3 <- Levens2%>%
   pivot_wider(names_from = Geslacht, values_from= `Levensverwachting (jaar )`)%>%
   mutate("Lifeexpectance_combined"
          =(as.integer(Mannen)+as.integer(Vrouwen))/2)
+
+numeric_years <- Levens3 %>%
+  separate(Perioden,into= c("PeriodStart", "PeriodEnd"), sep= " tot ", remove = TRUE, convert = TRUE)%>%
+  mutate(PeriodMiddle= (((PeriodStart)+(PeriodEnd)))/2)
 
 Levens4 <- Levens3 %>%
   summarize("median_men" = median(as.integer(Mannen)),
