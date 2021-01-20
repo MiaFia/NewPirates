@@ -1,3 +1,12 @@
+#First, we write some codes in bash in order to filter the json files for the criterias we were looking for,
+ #which are entries that contain the string 'dutch', 'birthYear', and 'deathYear', excluding entries containing
+ #containing the string 'fictional', and 'mythology'.
+
+#khoatran@MacBook-Pro-6 People % cat \A_people.json |grep "deathYear"| grep "birthYear"| grep "Dutch" | grep -v
+#"fictional" | grep -v "mythology" >.\A_people_filteredh.json
+
+#We do this manually for all json files A->Z, changing the names of the files accordingly
+
 #Settings CODE
 import json
 
