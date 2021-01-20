@@ -5,7 +5,9 @@ First the python file filtering_data.py should be opened. There two things are p
 either: manually go through each file in the People folder using the first shell command and the running the top python lines
 or: scroll down and run the other shell command through the entire folder in the shell and use the second set of python commands
 
-Then the resulting .csv files for the countries are used in the R script Graphing_both_countries. 
+Then the resulting .csv files for the countries are used in the R scripts Lifespan_Expectancy_Country.R
+
+\\
 For that two datasets have to be downloaded:
 
 How to get to the Datasets we chose:
