@@ -1,16 +1,6 @@
-#This might merge all the files?
-install.packages("dplyr")                                    
-install.packages("plyr")   
-install.packages("readr")                
-
-library("dplyr")                                                 
-library("plyr") 
-library("readr") 
 library (tidyverse)
-life_all <- list.files(path = './People/filtered', 
-                       pattern = '*.csv', full.names = TRUE) %>% 
-  lapply(read_csv) %>% 
-  bind_rows 
 
-span_df <- mutate (life_all, lifespan = as.integer(deathYear)- as.integer(birthYear))
+life_all<- read_csv2('people_dutch_real.csv')
+span_df <- mutate (life_all, lifespan = as.integer(deathYear)- as.integer(birthYear))%>%
+  filter(1920>birthYear>1861)
 avr_df <- summarise (span_df, 'avr_span'= mean(lifespan))
