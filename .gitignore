@@ -1,6 +1,5 @@
 *.json
 this.txt
-Levensverwachting*.csv
 *.aux
 *.log
 *.out
