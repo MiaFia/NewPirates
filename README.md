@@ -7,10 +7,10 @@ or: scroll down and run the other shell command through the entire folder in the
 
 Then the resulting .csv files for the countries are used in the R scripts Lifespan_Expectancy_Country.R
 
-\\
+\
 For that two datasets have to be downloaded:
 
-How to get to the Datasets we chose:
+How to get to the Datasets we chose:\
 https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-
 Then click on WEbservice, choose the first link and immediatly download the csv.
 
