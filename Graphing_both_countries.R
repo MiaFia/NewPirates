@@ -2,8 +2,6 @@ library(tidyverse)
 library(readr)
 library('ggthemes')
 Sys.setenv(LANG= "en")
-ibrary (tidyverse)
-library(readr)
 #The data for this project is taken from https://www.gapminder.org/data/ filtered for life expectancy. 
 #This filter could also be added manually but since the original csv is really big we decided to use this
 #pre-applied filter and downloaded it as a csv.
@@ -20,7 +18,15 @@ life_expectancy_NL <- life_expectancy_years%>%
   pivot_longer(cols = c('1800':'2100'), names_to="Year", values_to="Expectancy")%>%
   filter(as.integer(Year)<1931)
 
-#Then we find the dutch peopel
+#With the data file from the github we get life expectancy approximations from before 1800
+early_life_expectancy <- read_delim("Social_High_Class_Life_expectancy_Middle.csv", 
+                                          ";", escape_double = FALSE, trim_ws = TRUE)
+life_expect_combined <- early_life_expectancy%>%
+  mutate("Total"=((`Expectation of life at birth(years), Males`)+ 
+                    (`Expectation of life at birth(years), Females`))/2)%>%
+  group_by(`Middle of Period of Birth`)
+
+#Then we find the life span for dutch Wikipedia people
 library('ggthemes')
 
 #Creating a variable for the csv file
@@ -41,13 +47,17 @@ people_dutch_grouped <- people_dutch_new %>%
 View(people_dutch_grouped)
 
 #Creating a graph for the average life span and the life expectancy for Netherlands 
-ggplot(data = people_dutch_grouped)+ geom_point( aes(x = birthYear, y = average_life )) + geom_point(data=life_expectancy_NL, aes(x=(as.integer(Year)), y=Expectancy), color= 'red')+
+ggplot(data = people_dutch_grouped)+ geom_point( aes(x = birthYear, y = average_life )) + 
+  geom_point(data=life_expectancy_NL, aes(x=(as.integer(Year)), y=Expectancy), color= 'red')+
+  geom_line(data=life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total), color='green')+
   labs(title = "Average life spand and life expectancy in Netherlands",
-       subtitle= 'The average life span of Dutch people with a Wikipedia entry, in the 897-1920 period (completed cohorts)') +
-  ylab("Average life span per year") + xlab("Year") +theme_hc()+geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life),method='lm') +
+       subtitle= 'The average life span of Dutch people with a Wikipedia entry, in the 897-1931 period (completed cohorts)',
+       x="Average life span per year",
+       y="Year") +
+  theme_hc()+
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life),method='lm') +
   geom_smooth(data= life_expectancy_NL,aes(x=(as.integer(Year)), y=Expectancy), color= 'red' ,method='lm')+
   scale_y_continuous(limits = c(0,90))
-
 
 
   
@@ -68,7 +78,7 @@ people_SA_grouped <- people_dutch_new %>%
 
 View(people_SA_grouped)
 
-#Creating a graph for the average life span and the life expectancy for Netherlands 
+#Creating a graph for the average life span and the life expectancy for South Africa
 ggplot(data = people_SA_grouped)+ geom_point( aes(x = birthYear, y = average_life )) + geom_point(data=life_expectancy_SA, aes(x=(as.integer(Year)), y=Expectancy), color= 'red')+
   labs(title = "Life span and Life expectancy for South Africa",
        subtitle= 'The average life span on People from South Africa with a Wikipedia entry in the period 897-1931(completed cohorts) and the life expectancy between 1800-1931') +
