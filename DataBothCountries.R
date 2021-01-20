@@ -16,6 +16,6 @@ life_expectany_SA <- life_expectancy_years%>%
 life_expectancy_NL <- life_expectancy_years%>%
   filter(country== "Netherlands")%>%
   pivot_longer(cols = c('1800':'2100'), names_to="Year", values_to="Expectancy")%>%
-  filter(as.integer(Year)<2017)%>%
+  filter(as.integer(Year)<1931)%>%
   summarize(median_NL= median(as.integer(Expectancy)),
             mean_NL= mean(as.integer(Expectancy)))
