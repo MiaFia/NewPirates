@@ -1,5 +1,6 @@
 library(tidyverse)
 library(readr)
+library('ggthemes')
 Sys.setenv(LANG= "en")
 Levensverwachting <- read_delim("Levensverwachting_vanaf_1861_20012021_113307.csv", 
                                         ";", escape_double = FALSE, trim_ws = TRUE)
@@ -36,5 +37,3 @@ ggplot(data=Levens3)+
        y = 'Life expectancy in years')+
   theme_light()+
   scale_x_discrete(breaks = c("1861 tot 1866" ,"1891 tot 1896", "1921 tot 1926", "1951 tot 1956", "1981 tot 1986"))
-
-
