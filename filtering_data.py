@@ -41,7 +41,7 @@ with open('people_dutch_real.csv', 'w') as f:
 
             #Automatically filtered files in the Shell
 #We can also loop through the entire folder of people in the shell and get a single json file with all people we want:
-# gci .\People\People\ | gc | sls "dutch" |sls "birthYear" |sls "deathYear"|select -expand Line >.\people_filtered_dutch.json
+# gci .\People\People\ | gc | sls "dutch" |sls "birthYear" |sls "deathYear" |sls -notmatch 'fictional'|select -expand Line >.\people_filtered_dutch.json
 #Then we only have to go through the above steps for that one file, after saving it as UTF-8
 real_people =[]
 with open('people_filtered_dutch.json', encoding='utf-8') as file:
@@ -64,7 +64,7 @@ with open('people_dutch_real.csv', 'w') as f:
         f.write(f'{birth}, {death} \n')
 
 #Then we do the same for South Africa
-#gci .\People\People\ | gc | sls "South Africa*" |sls "birthYear" |sls "deathYear"|select -expand Line >.\people_filtered_SA.json
+#gci .\People\People\ | gc | sls "South Africa*" |sls "birthYear" |sls "deathYear"|sls -notmatch 'fictional'|select -expand Line >.\people_filtered_SA.json
 with open('people_filtered_SA.json', encoding='utf-8') as file:
         #Run through each dictionary line by line
         for line in file:
