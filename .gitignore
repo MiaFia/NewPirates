@@ -1,8 +1,9 @@
 *.json
 this.txt
-Levensverwachting*.csv
+Levensverwachting_vanaf_*.csv
 *.aux
 *.log
 *.out
 *.synctex.gz
 t004*.csv
+
