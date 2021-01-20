@@ -1,16 +1,19 @@
-#This might merge all the files?
-install.packages("dplyr")                                    
-install.packages("plyr")   
-install.packages("readr")                
-
-library("dplyr")                                                 
-library("plyr") 
-library("readr") 
 library (tidyverse)
-life_all <- list.files(path = './People/filtered', 
-                       pattern = '*.csv', full.names = TRUE) %>% 
-  lapply(read_csv) %>% 
-  bind_rows 
 
-span_df <- mutate (life_all, lifespan = as.integer(deathYear)- as.integer(birthYear))
-avr_df <- summarise (span_df, 'avr_span'= mean(lifespan))
+NLlife_all<- read_csv2('people_dutch_real.csv')
+NLspan_df <- mutate (life_a, lifespan = as.integer(deathYear)- as.integer(birthYear))%>%
+  filter(birthYear>1861)
+NLavr_df <- summarise (span_df, 'avr_span'= mean(lifespan), median_span = median(lifespan))
+ggplot(data=span_df)+
+  aes(x=birthYear, y=lifespan)+
+  geom_point()
+
+#And the same for South Africans
+
+SAlife_all<- read_csv2('people_SA_real.csv')
+SA_span_df <- mutate (life_a, lifespan = as.integer(deathYear)- as.integer(birthYear))%>%
+  filter(birthYear>1861)
+SA_avr_df <- summarise (span_df, 'avr_span'= mean(lifespan), median_span = median(lifespan))
+ggplot(data=span_df)+
+  aes(x=birthYear, y=lifespan)+
+  geom_point()

@@ -21,3 +21,5 @@ How to get a .csv file:
 How to get to the Dataset we chose:
 https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-
 Then click on one of the links and there we downloaded it as csv immediately instead of doing the API thing.
+Data set for the Middle Ages:
+https://www.tandfonline.com/doi/full/10.1080/00324728.2013.765955?scroll=top&needAccess=true&
