@@ -32,7 +32,12 @@ Life_medians_Means_NL= life_expectancy_NL%>%
 ggplot() +
   geom_line(data= life_expectancy_NL, aes(x=as.integer(Year), y= Expectancy, colour= 'Netherlands'))+
   geom_line(data= life_expectany_SA, aes(x= as.integer(Year), y= Expectancy, colour= 'South Africa'))+
-  geom_line(data = life_expectancy_JP, aes(x= as.integer(Year), y= Expectancy, colour= 'Japan'))
+  geom_line(data = life_expectancy_JP, aes(x= as.integer(Year), y= Expectancy, colour= 'Japan'))+
+  scale_y_continuous(limits = c(0,90))+
+  labs(x="Year", y= "Life expectancy in years at birth",
+       title = "Life Expectancy in Years at Birth over the Years", colour= NULL)
+ggsave('Life_Expect_All_Three.pdf')
+
 
 
 
