@@ -15,7 +15,7 @@ life_expectancy_NL <- life_expectancy_years%>%
 #With the data file from the github we get life expectancy approximations from before 1800
 early_life_expectancy <- read_delim("Social_High_Class_Life_expectancy_Middle.csv", 
                                           ";", escape_double = FALSE, trim_ws = TRUE)
-life_expect_combined <- early_life_expectancy%>%
+early_life_expect_combined <- early_life_expectancy%>%
   mutate("Total"=((`Expectation of life at birth(years), Males`)+ 
                     (`Expectation of life at birth(years), Females`))/2)%>%
   group_by(`Middle of Period of Birth`)
