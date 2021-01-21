@@ -1,5 +1,7 @@
 library (tidyverse)
 library(readr)
+library(ggthemes)
+theme_set(theme_light(base_size = 14))
 #The data for this project is taken from https://www.gapminder.org/data/ filtered for life expectency. 
 #This filter could also be added manually but since the original csv is really big we decided to use this
 #pre-applied filter and downloaded it as a csv.
@@ -34,9 +36,19 @@ ggplot() +
   geom_line(data= life_expectany_SA, aes(x= as.integer(Year), y= Expectancy, colour= 'South Africa'))+
   geom_line(data = life_expectancy_JP, aes(x= as.integer(Year), y= Expectancy, colour= 'Japan'))+
   scale_y_continuous(limits = c(0,90))+
-  labs(x="Year", y= "Life expectancy in years at birth",
-       title = "Life Expectancy in Years at Birth over the Years", colour= NULL)
+  labs(x="Year", y= "Life Expectancy in Years at Birth",
+       title = "Life Expectancy", subtitle = "In the Netherlands, South Africa and Japan in years at birth." , 
+       colour= NULL)
 ggsave('Life_Expect_All_Three.pdf')
+
+ggplot() +
+  geom_line(data= life_expectancy_NL, aes(x=as.integer(Year), y= Expectancy, colour= 'Netherlands'))+
+  geom_line(data= life_expectany_SA, aes(x= as.integer(Year), y= Expectancy, colour= 'South Africa'))+
+  scale_y_continuous(limits = c(0,90))+
+  labs(x="Year", y= "Life Expectancy in Years at Birth",
+       title = "Life Expectancy", subtitle = "in the Netherlands and South Africa in years at birth.",
+       colour= NULL)
+ggsave('Life_Expect_NL_SA.pdf')
 
 
 
