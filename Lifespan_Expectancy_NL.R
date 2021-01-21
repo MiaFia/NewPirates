@@ -42,8 +42,10 @@ Levens3 <- Levens2%>%
 #As the data deals in groups of 5 years, we determined the middle of the period and assigned the value of the period to it
 numeric_years <- Levens3 %>%
   separate(Perioden,into= c("PeriodStart", "PeriodEnd"), sep= " tot ", remove = TRUE, convert = TRUE)%>%
-  mutate(PeriodMiddle= (((PeriodStart)+(PeriodEnd)))/2)
-#This will give the orange graph in the end
+  mutate(PeriodMiddle= (((PeriodStart)+(PeriodEnd)))/2)%>%
+  filter (PeriodEnd<=1931)
+  
+
 
 #Then we find the life span for dutch Wikipedia people
 #Creating a variable for the csv file
@@ -65,18 +67,19 @@ View(people_dutch_grouped)
 
 #Creating a graph for the average life span and the life expectancy for Netherlands 
 #first we make a point graph for the lifespans of our data, and a smooth to show average trends
-ggplot(data = people_dutch_grouped)+ geom_point( aes(x = birthYear, y = average_life )) + 
-  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life),method='lm') +
+ggplot(data = people_dutch_grouped)+ geom_point( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),method='lm') +
   #the we create a point graph and a smooth line for the gapminder life expectancy
-  geom_point(data=life_expectancy_NL, aes(x=(as.integer(Year)), y=Expectancy), color= 'red')+
-  geom_smooth(data= life_expectancy_NL,aes(x=(as.integer(Year)), y=Expectancy), color= 'red' ,method='lm')+
+  geom_line(data=life_expectancy_NL, aes(x=(as.integer(Year)), y=Expectancy, color= 'Gapminder'))+
+  #geom_smooth(data= life_expectancy_NL,aes(x=(as.integer(Year)), y=Expectancy, color ='Gapminder'),method='lm')+
   #and a line graph for the older times data
-  geom_line(data=life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total), color='green')+
+  geom_line(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky'))+
   #and finally a graph for the dutch government data
-  geom_point(data=numeric_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined), color='orange')+
-  labs(title = "Average life spand and life expectancy in Netherlands",
+  geom_line(data=numeric_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Dutch Government'))+
+  labs(title = "Average life spans and life expectancy in Netherlands",
        subtitle= 'The average life span of Dutch people with a Wikipedia entry, in the 897-1931 period (completed cohorts)',
        x="Average life span per year",
-       y="Year") +
-  theme_hc()+
+       y="Year",
+       color = 'Sources') +
+  theme_light(base_size = 16)+
   scale_y_continuous(limits = c(0,90))

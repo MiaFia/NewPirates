@@ -30,15 +30,15 @@ people_SA_grouped <- people_SA_new %>%
 
 #And we now graph both on the same axis to get a comparison!
 ggplot(data=people_dutch_grouped)+
-  geom_point(data=people_dutch_grouped, aes(x = birthYear, y = average_life, color='Netherlands' ))+
+  geom_point(data=people_dutch_grouped, aes(x = birthYear, y = average_life, color='Netherlands' ), size =0.7)+
   geom_smooth(data=people_dutch_grouped, aes(x = birthYear, y = average_life, color='Netherlands' ), method='lm')+
-  geom_point(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ))+
+  geom_point(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ), size =0.7)+
   geom_smooth(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ), method='lm')+
-  labs(title = 'Life Span in the Netherlands and South Africa',
-         subtitle ='Average lifespans of people with a Wikipedia page from the Netherlands and South Africa',
+  labs(title = 'Life Spans in the Netherlands and South Africa',
+         subtitle ='Average lifes pans of people with a Wikipedia page from the Netherlands and South Africa',
          x= 'Birth Year',
          y= 'Life span in Years',
        color= 'Countries',
        source= 'Source: DPedia')+
-  scale_x_continuous(breaks= c(800, 1000, 1200, 1400, 1600, 1800, 2000))+
-  theme_light(base_size=14)
+  scale_x_continuous(breaks= c(900, 1100, 1300, 1500, 1700, 1900))+
+  theme_light(base_size=16)
