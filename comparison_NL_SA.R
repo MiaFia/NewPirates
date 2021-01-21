@@ -35,7 +35,7 @@ ggplot(data=people_dutch_grouped)+
   geom_line(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ), size =0.7)+
   geom_smooth(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ), size=1.5, method='lm')+
   labs(title = 'Life Spans in the Netherlands and South Africa',
-         subtitle ='Average lifes pans of people with a Wikipedia page from the Netherlands and South Africa',
+         subtitle ='Average life spans of people with a Wikipedia page from the Netherlands and South Africa',
          x= 'Birth Year',
          y= 'Life span in Years',
        color= 'Countries',

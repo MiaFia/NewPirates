@@ -34,8 +34,8 @@ Levens3 <- Levens2%>%
 #As the data deals in groups of 5 years, we determined the middle of the period and assigned the value of the period to it
 numeric_years <- Levens3 %>%
   separate(Perioden,into= c("PeriodStart", "PeriodEnd"), sep= " tot ", remove = TRUE, convert = TRUE)%>%
-  mutate(PeriodMiddle= (((PeriodStart)+(PeriodEnd)))/2)%>%
-  filter (PeriodEnd<=1931)
+  mutate(PeriodMiddle= ((((PeriodStart)+(PeriodEnd)))/2)-21)#%>%
+  #filter (PeriodEnd<=1931)
 
 #We get the Life expectancy at birth
 Levens_0<-Levensverwachting %>%
