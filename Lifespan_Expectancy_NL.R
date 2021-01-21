@@ -3,15 +3,6 @@ library(readr)
 library('ggthemes')
 Sys.setenv(LANG= "en")
 
-#The first data is from gapminder (download before)
-life_expectancy_years <- read_csv("life_expectancy_years.csv")
-
-#As this file includes life expectancy per year for many countries, we filter the dutch values out and take those up until 1931
-life_expectancy_NL <- life_expectancy_years%>%
-  filter(country== "Netherlands")%>%
-  pivot_longer(cols = c('1800':'2100'), names_to="Year", values_to="Expectancy")%>%
-  filter(as.integer(Year)<1931)
-
 #With the data file from the github we get life expectancy approximations from before 1800
 early_life_expectancy <- read_delim("Social_High_Class_Life_expectancy_Middle.csv", 
                                           ";", escape_double = FALSE, trim_ws = TRUE)
@@ -84,27 +75,31 @@ people_dutch_grouped <- people_dutch_new %>%
 
 #Graph 1: Dutch government old and new:
 ggplot(data = people_dutch_grouped)+ 
-  geom_point( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
-  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),method='lm') +
+  geom_line( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size =1.5, method='lm') +
   geom_line (data=numeric_years, aes(x=PeriodMiddle, y=Levensverwacht, color='Dutch Government 21'))+
-  geom_line (data=numeric0_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Dutch Government at birth'))
-  
+  geom_line (data=numeric0_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Dutch Government at birth'))+
+labs(title = "Average life spans and life expectancy in Netherlands",
+     subtitle= 'Life span of Dutch people with a Wikipedia entry against two types of life expectancy',
+     x="Average life span per year",
+     y="Year",
+     color = 'Sources') +
+  theme_light(base_size = 16)+
+  scale_y_continuous(limits = c(0,90))+
+  scale_x_continuous(limits=c(1860, 1930))
 
-#Creating a graph for the average life span and the life expectancy for Netherlands 
-#first we make a point graph for the lifespans of our data, and a smooth to show average trends
-ggplot(data = people_dutch_grouped)+ geom_point( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
-  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),method='lm') +
-  #the we create a point graph and a smooth line for the gapminder life expectancy
-  geom_line(data=life_expectancy_NL, aes(x=(as.integer(Year)), y=Expectancy, color= 'Gapminder'))+
-  #geom_smooth(data= life_expectancy_NL,aes(x=(as.integer(Year)), y=Expectancy, color ='Gapminder'),method='lm')+
-  #and a line graph for the older times data
+#Graph 2: Antonovsky data
+ggplot(data = people_dutch_grouped)+ 
+  geom_line( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size = 1.5, method='lm') +
+   #and a line graph for the older times data
   geom_line(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky'))+
-  #and finally a graph for the dutch government data
-  geom_line(data=numeric_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Dutch Government'))+
+  geom_point(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky'))+
   labs(title = "Average life spans and life expectancy in Netherlands",
-       subtitle= 'The average life span of Dutch people with a Wikipedia entry, in the 897-1931 period (completed cohorts)',
-       x="Average life span per year",
-       y="Year",
+       subtitle= 'Life span of Dutch people with a Wikipedia entry compared to life expectancies 1330-1930',
+       x="Birth Year",
+       y="Average Life span per year",
        color = 'Sources') +
   theme_light(base_size = 16)+
-  scale_y_continuous(limits = c(0,90))
+  scale_y_continuous(limits = c(0,90))+
+  scale_x_continuous(limits=c(1330, 1930))
