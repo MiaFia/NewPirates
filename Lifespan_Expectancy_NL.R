@@ -24,10 +24,10 @@ early_life_expect_combined <- early_life_expectancy%>%
 Levensverwachting <- read_delim("Levensverwachting_vanaf_1861_20012021_113307.csv", 
                                 ";", escape_double = FALSE, trim_ws = TRUE)
 
-#We filter the set so it only uses the data for cohorts and life expectancy at birth
+#We filter the set so it only uses the data for cohorts and life expectancy at age 21
 Levens2<- Levensverwachting %>%
   filter(grepl('tot', Perioden, fixed = TRUE))%>%
-  filter(grepl('0 jaar', `Leeftijd (op 31 december)`, fixed = FALSE))%>%
+  filter(grepl('21 jaar', `Leeftijd (op 31 december)`, fixed = FALSE))%>%
   filter(Geslacht == "Mannen" | Geslacht == "Vrouwen")%>%
   select(-`Sterftekans (kans)`, -`Levenden (tafelbevolking)  (aantal)`,
          -`Overledenen (tafelbevolking)  (aantal)`, -`Leeftijd (op 31 december)`)
@@ -37,15 +37,34 @@ Levens3 <- Levens2%>%
   group_by(Geslacht)%>%
   pivot_wider(names_from = Geslacht, values_from= `Levensverwachting (jaar )`)%>%
   mutate("Lifeexpectance_combined"
-         =(as.integer(Mannen)+as.integer(Vrouwen))/2)
+         =(as.integer(Mannen)+as.integer(Vrouwen))/2)%>%
+  mutate("Levensverwacht"= (as.integer(Lifeexpectance_combined)+21))
 
 #As the data deals in groups of 5 years, we determined the middle of the period and assigned the value of the period to it
 numeric_years <- Levens3 %>%
   separate(Perioden,into= c("PeriodStart", "PeriodEnd"), sep= " tot ", remove = TRUE, convert = TRUE)%>%
   mutate(PeriodMiddle= (((PeriodStart)+(PeriodEnd)))/2)%>%
   filter (PeriodEnd<=1931)
-  
 
+#We get the Life expectancy at birth
+Levens_0<-Levensverwachting %>%
+  filter(grepl('tot', Perioden, fixed = TRUE))%>%
+  filter(grepl('0 jaar', `Leeftijd (op 31 december)`, fixed = FALSE))%>%
+  filter(Geslacht == "Mannen" | Geslacht == "Vrouwen")%>%
+  select(-`Sterftekans (kans)`, -`Levenden (tafelbevolking)  (aantal)`,
+         -`Overledenen (tafelbevolking)  (aantal)`, -`Leeftijd (op 31 december)`)  
+
+Levens0 <- Levens_0%>%
+  group_by(Geslacht)%>%
+  pivot_wider(names_from = Geslacht, values_from= `Levensverwachting (jaar )`)%>%
+  mutate("Lifeexpectance_combined"
+         =(as.integer(Mannen)+as.integer(Vrouwen))/2)
+
+#As the data deals in groups of 5 years, we determined the middle of the period and assigned the value of the period to it
+numeric0_years <- Levens0 %>%
+  separate(Perioden,into= c("PeriodStart", "PeriodEnd"), sep= " tot ", remove = TRUE, convert = TRUE)%>%
+  mutate(PeriodMiddle= (((PeriodStart)+(PeriodEnd)))/2)%>%
+  filter (PeriodEnd<=1931)
 
 #Then we find the life span for dutch Wikipedia people
 #Creating a variable for the csv file
@@ -55,15 +74,21 @@ people_dutch <- read_csv("people_dutch_real.csv",col_types = "ii")
 people_dutch_new <- people_dutch %>%
   mutate("lifespan" = deathYear - birthYear) %>%
   filter(lifespan > 0 & lifespan < 120) %>%
-  filter(birthYear <= 1931)
-arrange(birthYear)
+  filter(birthYear <= 1931)%>%
+  arrange(birthYear)
 
 #Grouping the entries by year and calculating the mean life
 people_dutch_grouped <- people_dutch_new %>%
   group_by(birthYear)%>%
   summarise(average_life = mean(lifespan))
 
-View(people_dutch_grouped)
+#Graph 1: Dutch government old and new:
+ggplot(data = people_dutch_grouped)+ 
+  geom_point( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),method='lm') +
+  geom_line (data=numeric_years, aes(x=PeriodMiddle, y=Levensverwacht, color='Dutch Government 21'))+
+  geom_line (data=numeric0_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Dutch Government at birth'))
+  
 
 #Creating a graph for the average life span and the life expectancy for Netherlands 
 #first we make a point graph for the lifespans of our data, and a smooth to show average trends
