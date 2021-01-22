@@ -1,3 +1,4 @@
-A_dutch_people_filtered.json
 *.csv
 *.json
+*.pdf
+*.tex
