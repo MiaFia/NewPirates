@@ -5,5 +5,6 @@ Levensverwachting_vanaf_*.csv
 *.log
 *.out
 *.synctex.gz
-t004*.csv
-
+*.csv
+*.pdf
+*.tex
