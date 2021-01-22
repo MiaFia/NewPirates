@@ -8,7 +8,7 @@ or: scroll down and run the other shell command through the entire folder in the
 Then the resulting .csv files for the countries are used in the R scripts Lifespan_Expectancy_Country.R
 
 \
-For that two datasets have to be downloaded:
+For that two datasets have to be downloaded from outside:
 
 How to get to the Datasets we chose:\
 https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-
@@ -18,6 +18,8 @@ https://www.gapminder.org/data/
 select the filter 'life expectancy'
 This filter could also be added manually but since the original csv is really big we decided to use this pre-applied filter and downloaded it as a csv.
 
+\
+This data set has already been copied into a csv file which is for download in this repository
 https://doi.org/10.2307/3348839, page 33
 copy the table into a csv file
 Read into R.
