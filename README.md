@@ -11,7 +11,7 @@ To compare the two countries, run the R file titled: 'Comparison_NL_SA.R'
 
 The R file DataBothCountries.r graphs the life expectancies from gapminder of both NL and SA
 \
-For that two datasets have to be downloaded from outside:
+For that two datasets have been downloaded from outside, but both are available in the Data folder:
 
 How to get to the Datasets we chose:\
 https://data.overheid.nl/dataset/318-levensverwachting--geslacht--leeftijd--per-jaar-en-periode-van-vijf-jaren-
