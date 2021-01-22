@@ -34,12 +34,12 @@ ggplot(data=people_dutch_grouped)+
   geom_smooth(data=people_dutch_grouped, aes(x = birthYear, y = average_life, color='Netherlands' ),size =1.5, method='lm')+
   geom_line(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ), size =0.7)+
   geom_smooth(data=people_SA_grouped, aes(x = birthYear, y = average_life, color='South Africa' ), size=1.5, method='lm')+
-  labs(title = 'Life Spans in the Netherlands and South Africa',
-         subtitle ='Average life spans of people with a Wikipedia page from the Netherlands and South Africa',
-         x= 'Birth Year',
-         y= 'Life span in Years',
+  labs(title = 'Lifespans in the Netherlands and South Africa',
+         subtitle ='Lifespan of well-known people compared between the Netherlands and South Africa',  
+       x= 'Birth Year',
+      y= 'Average Lifespan',
        color= 'Countries',
-       source= 'Source: DPedia')+
-  scale_x_continuous(limits = c(1861, 1931))+
+       source= 'Source: DBpedia')+
+  scale_x_continuous(limits = c(1800, 1931))+
   scale_y_continuous(limits = c(0,90))+
   theme_light(base_size=16)

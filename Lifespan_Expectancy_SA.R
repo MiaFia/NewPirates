@@ -16,25 +16,25 @@ people_SA <- read_csv("people_SA_real.csv",col_types = "ii")
 people_SA_new <- people_SA %>%
   mutate("lifespan" = deathYear - birthYear) %>%
   filter(lifespan > 0 & lifespan < 120) %>%
-  filter(birthYear <= 1931)
-arrange(birthYear)
+  filter(birthYear <= 1931)%>%
+  arrange(birthYear)
 
 #Grouping the entries by year and calculating the mean life
 people_SA_grouped <- people_SA_new %>%
   group_by(birthYear)%>%
   summarise(average_life = mean(lifespan))
 
-View(people_SA_grouped)
 
 #Creating a graph for the average life span and the life expectancy for South Africa
 ggplot(data = people_SA_grouped)+ 
-  geom_line( aes(x = birthYear, y = average_life, color='Life Span DPedia' ), size =0.5) + 
-  geom_smooth(data= people_SA_grouped, aes(x = birthYear, y = average_life, color='Life Span DPedia'),size=1.5,method='lm') +
+  geom_line( aes(x = birthYear, y = average_life, color='Lifespan DBpedia' ), size =0.5) + 
+  geom_smooth(data= people_SA_grouped, aes(x = birthYear, y = average_life, color='Lifespan DBpedia'),size=1.5,method='lm') +
   geom_line(data=life_expectancy_SA, aes(x=(as.integer(Year)), y=Expectancy, color= 'Life Expectancy Gapminder'))+
-  labs(title = "Life span and Life expectancy for South Africa",
-       subtitle= 'Life span of People from South Africa with a Wikipedia entry and the average life expectancy',
+  labs(title = "Lifespan and Life expectancy for South Africa",
+       subtitle= 'Lifespan of well-known South African people compared to 
+       the average life expectancy taken from Gapminder',
        x="Birth Year",
-       y= "Average life span per year",
+       y= "Average Lifetime",
        colour= 'Source') +
   theme_light(base_size = 16)+
   scale_y_continuous(limits = c(0,90))+

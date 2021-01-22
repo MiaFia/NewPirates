@@ -75,14 +75,15 @@ people_dutch_grouped <- people_dutch_new %>%
 
 #Graph 1: Dutch government old and new:
 ggplot(data = people_dutch_grouped)+ 
-  geom_line( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
-  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size =1.5, method='lm') +
-  geom_line (data=numeric_years, aes(x=PeriodMiddle, y=Levensverwacht, color='Dutch Government 21'))+
-  geom_line (data=numeric0_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Dutch Government at birth'))+
-labs(title = "Average life spans and life expectancy in Netherlands",
-     subtitle= 'Life span of Dutch people with a Wikipedia entry against two types of life expectancy',
-     x="Average life span per year",
-     y="Year",
+  geom_line( aes(x = birthYear, y = average_life, color ='DBpedia Lifespans'),size=0.5) + 
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DBpedia Lifespans'),size =1.5, method='lm') +
+  geom_line (data=numeric_years, aes(x=PeriodMiddle, y=Levensverwacht, color='Life expectancy at age 21'))+
+  geom_line (data=numeric0_years, aes(x=PeriodMiddle, y=Lifeexpectance_combined, color='Life expectancy at birth'))+
+labs(title = "Lifespans and Life Expectancy in Netherlands",
+     subtitle= 'Lifespan of well-known Dutch people compared to 
+       the average life expectancy at birth and at age 21',
+     x="Birth Year",
+     y="Average Lifetime",
      color = 'Sources') +
   theme_light(base_size = 16)+
   scale_y_continuous(limits = c(0,90))+
@@ -90,15 +91,16 @@ labs(title = "Average life spans and life expectancy in Netherlands",
 
 #Graph 2: Antonovsky data
 ggplot(data = people_dutch_grouped)+ 
-  geom_line( aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size=0.5) + 
-  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DPedia Life spans'),size = 1.5, method='lm') +
+  geom_line( aes(x = birthYear, y = average_life, color ='DBpedia Lifespans'),size=0.5) + 
+  geom_smooth(data= people_dutch_grouped, aes(x = birthYear, y = average_life, color ='DBpedia Lifespans'),size = 1.5, method='lm') +
    #and a line graph for the older times data
-  geom_line(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky'))+
-  geom_point(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky'))+
-  labs(title = "Average life spans and life expectancy in Netherlands",
-       subtitle= 'Life span of Dutch people with a Wikipedia entry compared to life expectancies 1330-1930',
+  geom_line(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky Life expectancy'))+
+  geom_point(data=early_life_expect_combined, aes(x= `Middle of Period of Birth`, y= Total, color='Antonovsky Life expectancy'))+
+  labs(title = "Average lifespans and life expectancy in the Netherlands",
+       subtitle= 'Lifespan of well-known Dutch people compared to 
+       the average life expectancy supplied by Antonovsky',
        x="Birth Year",
-       y="Average Life span per year",
+       y="Average Lifetime",
        color = 'Sources') +
   theme_light(base_size = 16)+
   scale_y_continuous(limits = c(0,90))+
