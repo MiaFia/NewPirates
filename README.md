@@ -9,6 +9,7 @@ Both output the same csv files, that can then be used in R.
 Then the resulting .csv files for the countries are used in the R scripts Lifespan_Expectancy_NL.R or Lifespan_Expectancy_SA.R 
 To compare the two countries, run the R file titled: 'Comparison_NL_SA.R'
 
+The R file DataBothCountries.r graphs the life expectancies from gapminder of both NL and SA
 \
 For that two datasets have to be downloaded from outside:
 
