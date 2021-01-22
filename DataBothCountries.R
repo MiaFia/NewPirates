@@ -21,25 +21,10 @@ life_expectancy_NL <- life_expectancy_years%>%
   pivot_longer(cols = c('1800':'2100'), names_to="Year", values_to="Expectancy")%>%
   filter(as.integer(Year)<2051)
 
-life_expectancy_JP <- life_expectancy_years%>%
-  filter(country== "Japan")%>%
-  pivot_longer(cols = c('1800':'2100'), names_to="Year", values_to="Expectancy")%>%
-  filter(as.integer(Year)<2051)
-
 
 Life_medians_Means_NL= life_expectancy_NL%>%
   summarize(median_NL= median(as.integer(Expectancy)),
             mean_NL= mean(as.integer(Expectancy)))
-
-ggplot() +
-  geom_line(data= life_expectancy_NL, aes(x=as.integer(Year), y= Expectancy, colour= 'Netherlands'))+
-  geom_line(data= life_expectany_SA, aes(x= as.integer(Year), y= Expectancy, colour= 'South Africa'))+
-  geom_line(data = life_expectancy_JP, aes(x= as.integer(Year), y= Expectancy, colour= 'Japan'))+
-  scale_y_continuous(limits = c(0,90))+
-  labs(x="Year", y= "Life Expectancy in Years at Birth",
-       title = "Life Expectancy", subtitle = "In the Netherlands, South Africa and Japan in years at birth." , 
-       colour= NULL)
-ggsave('Life_Expect_All_Three.pdf')
 
 ggplot() +
   geom_line(data= life_expectancy_NL, aes(x=as.integer(Year), y= Expectancy, colour= 'Netherlands'))+

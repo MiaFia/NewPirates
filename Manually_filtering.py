@@ -9,6 +9,7 @@ import json
 #"fictional" | grep -v "mythology" >.\A_people_filteredh.json
 
 #We do this manually for all json files A->Z, changing the names of the files accordingly
+#The files needs to be manually saved in UTF-8 for this code to run
 
 #Create a list of alphabet letters
 alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
