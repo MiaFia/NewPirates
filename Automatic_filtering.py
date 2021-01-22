@@ -3,6 +3,7 @@
 import json
 
 #We can also loop through the entire folder of people in the shell and get a single json file with all people we want:
+#Make sure the file is within another file named people for this code to work, otherwise rename it in the code
 # gci .\People\People\ | gc | sls "dutch" |sls "birthYear" |sls "deathYear" |sls -notmatch 'fictional' |sls -notmatch 'mythological' |select -expand Line >.\people_filtered_dutch.json
 #Safe this file as UTF-8
 #Then we only have to go through the above steps for that one file, after saving it as UTF-8

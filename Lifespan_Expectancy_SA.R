@@ -3,7 +3,7 @@ library(tidyverse)
 library(readr)
 library('ggthemes')
 
-life_expectancy_years <- read_csv("life_expectancy_years.csv")
+life_expectancy_years <- read_csv("./Data/life_expectancy_years.csv")
 
 life_expectancy_SA <- life_expectancy_years%>%
   filter(country== "South Africa")%>%

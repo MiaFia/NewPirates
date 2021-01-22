@@ -4,7 +4,7 @@ library('ggthemes')
 Sys.setenv(LANG= "en")
 
 #With the data file from the github we get life expectancy approximations from before 1800
-early_life_expectancy <- read_delim("Social_High_Class_Life_expectancy_Middle.csv", 
+early_life_expectancy <- read_delim("./Data/Social_High_Class_Life_expectancy_Middle.csv", 
                                           ";", escape_double = FALSE, trim_ws = TRUE)
 early_life_expect_combined <- early_life_expectancy%>%
   mutate("Total"=((`Expectation of life at birth(years), Males`)+ 
@@ -12,7 +12,7 @@ early_life_expect_combined <- early_life_expectancy%>%
   group_by(`Middle of Period of Birth`)
 
 #A dataset by the dutch government to supply more data
-Levensverwachting <- read_delim("Levensverwachting_vanaf_1861_20012021_113307.csv", 
+Levensverwachting <- read_delim("./Data/LevensverwachtingStatline.csv", 
                                 ";", escape_double = FALSE, trim_ws = TRUE)
 
 #We filter the set so it only uses the data for cohorts and life expectancy at age 21

@@ -6,7 +6,7 @@ theme_set(theme_light(base_size = 14))
 #This filter could also be added manually but since the original csv is really big we decided to use this
 #pre-applied filter and downloaded it as a csv.
 
-life_expectancy_years <- read_csv("life_expectancy_years.csv")
+life_expectancy_years <- read_csv("./Data/life_expectancy_years.csv")
 
 life_expectany_SA <- life_expectancy_years%>%
   filter(country== "South Africa")%>%
